@@ -1,0 +1,49 @@
+version: "3"
+services:
+  pgloader-csv:
+    image: dimitri/pgloader
+    volumes: 
+    - "./init-db:/opt/db"
+    - "./pgloader-config:/loader"
+    command: pgloader 
+  pgloader-sqlite:
+    image: dimitri/pgloader
+    volumes: 
+    - "./init-db:/opt/db"
+    - "./pgloader-config:/loader"
+    command: pgloader 
+  pgloader-pg:
+    image: dimitri/pgloader
+    volumes: 
+    - "./init-db:/opt/db"
+    - "./pgloader-config:/loader"
+    command: pgloader 
+  pgloader-mysql:
+    image: dimitri/pgloader
+    volumes: 
+    - "./init-db:/opt/db"
+    - "./pgloader-config:/loader"
+    command: pgloader 
+  mysql:
+    image: mysql:5.7.16
+    ports:
+      - 3306:3306
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    environment:
+      MYSQL_ROOT_PASSWORD: dalongrong
+      MYSQL_DATABASE: gogs
+      MYSQL_USER: gogs
+      MYSQL_PASSWORD: dalongrong
+      TZ: Asia/Shanghai
+  postgres:
+    image: postgres:9.6.11
+    ports:
+    - "5432:5432"
+    environment:
+    - "POSTGRES_PASSWORD:dalong"
+  postgres2:
+    image: postgres:9.6.11
+    ports:
+    - "5433:5432"
+    environment:
+    - "POSTGRES_PASSWORD:dalong"
