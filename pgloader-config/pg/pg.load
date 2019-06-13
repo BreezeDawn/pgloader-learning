@@ -1,0 +1,5 @@
+load database
+  from pgsql://postgres:dalong@postgres:5432/postgres
+  into pgsql://postgres:dalong@postgres2:5432/postgres
+  including only table names matching  'fixed' in schema 'public'
+  ALTER TABLE NAMES MATCHING 'fixed' IN SCHEMA 'public' RENAME TO 'fixed_app';

@@ -29,7 +29,7 @@ services:
     volumes: 
     - "./init-db:/opt/db"
     - "./pgloader-config:/loader"
-    command: pgloader 
+    command: pgloader  /loader/pg/pg.load
   pgloader-mysql:
     image: dimitri/pgloader
     volumes: 
