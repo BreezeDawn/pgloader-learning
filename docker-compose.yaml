@@ -5,7 +5,7 @@ services:
     volumes: 
     - "./init-db:/opt/db"
     - "./pgloader-config:/loader"
-    command: pgloader 
+    command: pgloader  /loader/csv/csv.load
   pgloader-sqlite:
     image: dimitri/pgloader
     volumes: 
