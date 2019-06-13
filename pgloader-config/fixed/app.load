@@ -1,0 +1,37 @@
+LOAD FIXED
+     FROM inline
+          (
+           a from  0 for 10,
+           b from 10 for  8,
+           c from 18 for  8,
+           d from 26 for 17 [null if blanks, trim right whitespace]
+          )
+     INTO postgresql://postgres:dalong@postgres:5432/postgres
+     TARGET TABLE fixed
+          (
+             a, b,
+             c time using (time-with-no-separator c),
+             d
+          )
+
+     WITH truncate
+
+      SET work_mem to '14MB',
+          standard_conforming_strings to 'on'
+
+BEFORE LOAD DO
+     $$ drop table if exists fixed; $$,
+     $$ create table fixed (
+         a integer,
+         b date,
+         c time,
+         d text
+        );
+     $$;
+
+ 01234567892008052011431250firstline
+ 1334567892008052011531250firstline
+    01234562008052115182300left blank-padded
+ 12345678902008052208231560another line
+  2345609872014092914371500
+  2345678902014092914371520

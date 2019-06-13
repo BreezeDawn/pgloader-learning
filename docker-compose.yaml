@@ -6,6 +6,12 @@ services:
     - "./init-db:/opt/db"
     - "./pgloader-config:/loader"
     command: pgloader  /loader/csv/csv.load
+  pgloader-fixed2:
+    image: dimitri/pgloader
+    volumes: 
+    - "./init-db:/opt/db"
+    - "./pgloader-config:/loader"
+    command: pgloader  /loader/fixed/app.load
   pgloader-fixed:
     image: dimitri/pgloader
     volumes: 
