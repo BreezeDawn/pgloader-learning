@@ -11,13 +11,13 @@ services:
     volumes: 
     - "./init-db:/opt/db"
     - "./pgloader-config:/loader"
-    command: pgloader 
+    command: pgloader  /loader/csv/fixed.load
   pgloader-sqlite:
     image: dimitri/pgloader
     volumes: 
     - "./init-db:/opt/db"
     - "./pgloader-config:/loader"
-    command: pgloader 
+    command: pgloader https://github.com/lerocha/chinook-database/raw/master/ChinookDatabase/DataSources/Chinook_Sqlite_AutoIncrementPKs.sqlite postgresql://postgres:dalong@postgres:5432/postgres
   pgloader-pg:
     image: dimitri/pgloader
     volumes: 
@@ -29,7 +29,7 @@ services:
     volumes: 
     - "./init-db:/opt/db"
     - "./pgloader-config:/loader"
-    command: pgloader 
+    command: pgloader mysql://root:dalongrong@mysql/f1db postgresql://postgres:dalong@postgres:5432/f1db
   mysql:
     image: mysql:5.7.16
     ports:

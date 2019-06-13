@@ -16,8 +16,18 @@ docker-compose up -d postgres
 docker-compose up pgloader-fixed
 ```
 
-* from pg 2 pg
+* from mysql 2 pg
 
 ```code
 
+for mysql:
+
+mysql -uroot  -h127.0.0.1 -pdalongrong
+create database f1db;
+use f1db
+source init-db/mysql/f1db.sql
+
+for pg you may need create database f1db
+
+docker-compose up pgloader-mysql
 ```
